@@ -1,0 +1,47 @@
+
+
+.outer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    max-width: 600px;
+    width: 100%;
+    padding: 30px;
+}
+
+h1 {
+    margin-bottom: 0;
+}
+
+.subheader {
+    opacity: 0.5;
+    margin-top: 5px;
+    margin-bottom: 50px;
+    font-weight: bold;
+}
+
+button {
+    margin: 5px;
+
+    &.start {
+        width: 100%;
+        max-width: 200px;
+        margin: 20px auto 0;
+        padding: 8px;
+        border-radius: 6px;
+    }
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}

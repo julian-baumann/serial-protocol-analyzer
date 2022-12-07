@@ -62,7 +62,7 @@ module.exports = {
                 "variableDeclarationIgnoreFunction": true
             }
         ],
-        "@typescript-eslint/array-type": ["warn", { "default": "generic" }],
+        // "@typescript-eslint/array-type": ["warn", { "default": "generic" }],
         "@typescript-eslint/no-misused-promises": "off",
         "@typescript-eslint/no-empty-function": "warn",
         "@typescript-eslint/no-misused-new": "warn",

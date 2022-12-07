@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+@import "assets/fluent-theme/theme.scss";
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    -webkit-user-drag: none;
+}
+
+:root {
+    --font-family-monospace: "Cascadia Mono", "Fira Code", "Consolas", monospace;
+    color-scheme: light dark;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: var(--text-primary);
+    user-select: revert;
+    background-color: var(--solid-background-base);
+    font-family: "Segoe UI", -apple-system, ui-sans-serif, system-ui, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+}
