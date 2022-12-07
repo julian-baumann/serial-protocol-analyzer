@@ -9,6 +9,32 @@ import { StructuredFile } from "./entities/structured-file";
 })
 export class CompareService {
     private readonly separatorRegex: RegExp = /(\d{5,6}: \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}(?:,\d*)? [+\-]\d{1,3},\d{7})/;
+    private currentProtocolBacking?: CombinedProtocol;
+
+    public get currentProtocol(): CombinedProtocol|null {
+        if (this.currentProtocolBacking) {
+            return this.currentProtocolBacking;
+        }
+
+        const storedString: string|null = localStorage.getItem("combined-protocol");
+
+        if (storedString) {
+            const storedProtocol: CombinedProtocol|undefined = JSON.parse(storedString) as CombinedProtocol|undefined;
+
+            if (storedProtocol) {
+                return storedProtocol;
+            }
+        }
+
+        return null;
+    }
+
+    public set currentProtocol(value: CombinedProtocol|null) {
+        if (value) {
+            this.currentProtocolBacking = value;
+            localStorage.setItem("combined-protocol", JSON.stringify(value));
+        }
+    }
 
     private readText(file: File): Promise<string> {
         const reader: FileReader = new FileReader();
@@ -43,7 +69,7 @@ export class CompareService {
                 if (splitHeader?.length > 0) {
                     currentFileSection.issue = parseInt(splitHeader[0], 10) || 0;
                     currentFileSection.header = section;
-                    currentFileSection.file = file;
+                    currentFileSection.fileName = file.name;
                     isHeader = false;
                 }
             } else {

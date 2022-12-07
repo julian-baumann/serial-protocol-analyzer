@@ -1,18 +1,24 @@
 .background {
     background: url("/assets/bloom-mica-dark.png") center;
     background-size: cover;
+    height: 100vh;
+    position: fixed;
+    width: 100%;
 
     .blur {
         backdrop-filter: blur(100px);
+        height: 100vh;
+        position: fixed;
+        width: 100%;
     }
 
     div.noise {
-        //background-image: var(--acrylic-noise-asset);
-        //background-repeat: repeat;
-        //background-size: 100px, 100px;
-        //opacity: 0.05;
-        //width: 100%;
-        //height: 100%;
-        //position: fixed;
+        background-image: var(--acrylic-noise-asset);
+        background-repeat: repeat;
+        background-size: 100px, 100px;
+        opacity: 0.05;
+        width: 100%;
+        height: 100%;
+        position: fixed;
     }
 }
