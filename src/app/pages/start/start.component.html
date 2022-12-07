@@ -4,20 +4,20 @@
         <p class="subheader">Works only with "Free Device Monitor Studio"</p>
         <p>To start, upload two *.txt files containing the serial port communication.</p>
 
-        <div class="buttons">
-            <button (click)="selectFile('reads')">
-                {{readsFileName || "Select Reads File"}}
-            </button>
-            <button (click)="selectFile('writes')">
-                {{writesFileName || "Select Writes File"}}
-            </button>
+        <div class="list">
+            <div *ngFor="let file of files" class="listItem">
+                {{file.name}}
+            </div>
         </div>
 
-        <button class="start accent" [disabled]="!(readsFileName && writesFileName)" (click)="start()">
+        <div class="buttons">
+            <button (click)="selectFiles()">Select Files</button>
+        </div>
+
+        <button class="start accent" [disabled]="files.length <= 0" (click)="start()">
             Start
         </button>
 
-        <input id="readsFileInput" class="hidden" type="file" accept="text/plain" (change)="fileChanged($event, 'reads')" />
-        <input id="writesFileInput" class="hidden" type="file" accept="text/plain" (change)="fileChanged($event, 'writes')" />
+        <input id="fileInput" class="hidden" type="file" multiple accept="text/plain" (change)="fileChanged($event)" />
     </div>
 </div>

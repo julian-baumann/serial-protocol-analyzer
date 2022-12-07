@@ -1,8 +1,9 @@
 <div class="box">
+    <h1>Combined Serial Communication</h1>
     <div class="card" *ngFor="let section of combinedProtocol.sections">
-        {{section.header}}
-        <pre>
-            {{section.content}}
-        </pre>
+        <p class="header" [class.secondary]="section.fileName != primaryFileName">
+            {{section.header}}
+        </p>
+        <pre>{{section.content}}</pre>
     </div>
 </div>

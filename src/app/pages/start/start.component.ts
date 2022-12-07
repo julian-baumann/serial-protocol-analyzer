@@ -10,11 +10,7 @@ import { StructuredFile } from "../../services/entities/structured-file";
     styleUrls: ["./start.component.scss"]
 })
 export class StartComponent {
-    private readsFile?: StructuredFile;
-    private writesFile?: StructuredFile;
-
-    protected readsFileName?: string;
-    protected writesFileName?: string;
+    protected files: StructuredFile[] = [];
 
     public constructor(
         private compareService: CompareService,
@@ -22,30 +18,24 @@ export class StartComponent {
     ) {
     }
 
-    public selectFile(type: "reads"|"writes"): void {
-        document.getElementById(`${type}FileInput`)?.click();
+    public selectFiles(): void {
+        document.getElementById("fileInput")?.click();
     }
-    public async fileChanged(event: any, type: "reads"|"writes"): Promise<void> {
+    public async fileChanged(event: any): Promise<void> {
         const files: File[]|null = event.target?.files as File[];
 
         if (files == null || files.length == 0) {
             return;
         }
 
-        const file: File = files[0];
-
-        if (type == "reads") {
-            this.readsFile = await this.compareService.loadFile(file);
-            this.readsFileName = file.name;
-        } else if (type == "writes") {
-            this.writesFile = await this.compareService.loadFile(file);
-            this.writesFileName = file.name;
+        for (const file of files) {
+            this.files?.push(await this.compareService.loadFile(file));
         }
     }
 
     public async start(): Promise<void> {
-        if (this.readsFile && this.writesFile) {
-            this.compareService.currentProtocol = this.compareService.compare(this.readsFile, this.writesFile);
+        if (this.files && this.files.length > 0) {
+            this.compareService.currentProtocol = this.compareService.compare(...this.files);
             await this.router.navigate(["/protocol"]);
         }
     }

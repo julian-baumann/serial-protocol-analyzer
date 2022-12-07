@@ -73,7 +73,7 @@ export class CompareService {
                     isHeader = false;
                 }
             } else {
-                currentFileSection.content = section;
+                currentFileSection.content = section.replaceAll(/\r\n\r\n /g, " ");
                 isHeader = true;
             }
 
@@ -82,6 +82,8 @@ export class CompareService {
                 currentFileSection = new DataSection();
             }
         }
+
+        console.log(file);
 
         return file;
     }
@@ -94,7 +96,7 @@ export class CompareService {
             combinedProtocol.sections.push(...file.sections);
         }
 
-        combinedProtocol.sections = combinedProtocol.sections.sort((a: DataSection, b: DataSection) => (a.issue < b.issue) ? 1 : -1);
+        combinedProtocol.sections = combinedProtocol.sections.sort((a: DataSection, b: DataSection) => (a.issue > b.issue) ? 1 : -1);
 
         return combinedProtocol;
     }

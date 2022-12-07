@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { CompareService } from "../../services/compare.service";
 import { CombinedProtocol } from "../../services/entities/combined-protocol";
-import { Router } from "@angular/router";
 
 @Component({
     selector: "app-combined-protocol",
@@ -10,7 +10,9 @@ import { Router } from "@angular/router";
     styleUrls: ["./combined-protocol.component.scss"]
 })
 export class CombinedProtocolComponent {
-    public combinedProtocol: CombinedProtocol = null!;
+    protected combinedProtocol: CombinedProtocol = null!;
+    protected primaryFileName: string = "";
+
     public constructor(
         private compareService: CompareService,
         private router: Router
@@ -21,6 +23,7 @@ export class CombinedProtocolComponent {
         }
 
         this.combinedProtocol = compareService.currentProtocol;
+        this.primaryFileName = this.combinedProtocol.sections[0].fileName;
     }
 
 }
