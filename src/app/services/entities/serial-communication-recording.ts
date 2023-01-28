@@ -1,5 +1,5 @@
 import { DataSection } from "./data-section";
 
-export class CombinedProtocol {
+export class SerialCommunicationRecording {
     public sections: DataSection[] = [];
 }

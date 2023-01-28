@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CombinedProtocolComponent } from "./combined-protocol.component";
+import { BlurControlComponent } from "./blur-control.component";
 
-describe("CombinedProtocolComponent", () => {
-    let component: CombinedProtocolComponent;
-    let fixture: ComponentFixture<CombinedProtocolComponent>;
+describe("BlurControlComponent", () => {
+    let component: BlurControlComponent;
+    let fixture: ComponentFixture<BlurControlComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ CombinedProtocolComponent ]
+            declarations: [ BlurControlComponent ]
         })
             .compileComponents();
 
-        fixture = TestBed.createComponent(CombinedProtocolComponent);
+        fixture = TestBed.createComponent(BlurControlComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

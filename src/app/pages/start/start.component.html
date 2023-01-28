@@ -1,23 +1,43 @@
 <div class="outer">
     <div class="card">
         <h1>Serial Protocol Analyzer</h1>
-        <p class="subheader">Works only with "Free Device Monitor Studio"</p>
-        <p>To start, upload two *.txt files containing the serial port communication.</p>
+        <p class="subheader">Select some protocol.json files</p>
 
         <div class="list">
-            <div *ngFor="let file of files" class="listItem">
+            <div *ngFor="let file of filesForProtocolAnalysis.keys()" class="listItem">
+                {{file}}
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button (click)="selectFiles('analyze')">Select Files</button>
+        </div>
+
+        <button class="start accent" [disabled]="filesForProtocolAnalysis.size <= 0" (click)="start()">
+            Start
+        </button>
+
+        <input id="fileInput" class="hidden" type="file" multiple accept="text/plain" (change)="fileChanged($event, 'analyze')" />
+    </div>
+
+    <div class="card">
+        <h1>File Concatenator</h1>
+        <p class="subheader">Works only with *.txt files from "Free Device Monitor Studio"</p>
+
+        <div class="list">
+            <div *ngFor="let file of filesToConcatenate" class="listItem">
                 {{file.name}}
             </div>
         </div>
 
         <div class="buttons">
-            <button (click)="selectFiles()">Select Files</button>
+            <button (click)="selectFiles('concatenate')">Select Files</button>
         </div>
 
-        <button class="start accent" [disabled]="files.length <= 0" (click)="start()">
-            Start
+        <button class="start accent" [disabled]="filesToConcatenate.length <= 0" (click)="concatenate()">
+            Concatenate!
         </button>
 
-        <input id="fileInput" class="hidden" type="file" multiple accept="text/plain" (change)="fileChanged($event)" />
+        <input id="concatenateFileInput" class="hidden" type="file" multiple accept="text/plain" (change)="fileChanged($event, 'concatenate')" />
     </div>
 </div>
